@@ -210,6 +210,16 @@ uint32_t app_timer_start(app_timer_id_t timer_id, uint32_t timeout_ticks, void *
     return NRF_SUCCESS;
 }
 
+uint32_t app_timer_cnt_get(void)
+{
+  return xTaskGetTickCount();
+}
+
+uint32_t app_timer_cnt_diff_compute(uint32_t   ticks_to,
+                                    uint32_t   ticks_from)
+{
+    return ((ticks_to - ticks_from) & RTC_COUNTER_COUNTER_Msk);
+}
 
 uint32_t app_timer_stop(app_timer_id_t timer_id)
 {
